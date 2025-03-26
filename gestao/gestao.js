@@ -1,5 +1,5 @@
 // URL do back-end
-const apiUrl = 'http://localhost:3000/usuarios';
+const apiUrl = 'https://desenv-de-software-em-nuvem.onrender.com/usuarios';
 // Deixarei alguns comentários, pois o código não será feito só por mim. 
 // Função para carregar os usuários na tabela
 async function loadUsers() {
