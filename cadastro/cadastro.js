@@ -1,11 +1,11 @@
 document.getElementById('cadastroForm').addEventListener('submit', async (event) => {
     event.preventDefault();
-// Deixarei alguns comentários no código, pois ele não foi feito só ppor mim. 
+    // Deixarei alguns comentários no código, pois ele não foi feito só por mim. 
     const email = document.getElementById('email').value;
     const senha = document.getElementById('senha').value;
 
     try {
-        const response = await fetch('https://desenv-de-software-em-nuvem.onrender.com', {
+        const response = await fetch('https://desenv-de-software-em-nuvem.onrender.com/usuarios', {  // Corrigido para incluir /usuarios
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -14,17 +14,17 @@ document.getElementById('cadastroForm').addEventListener('submit', async (event)
         });
 
         const result = await response.json();
-    if (response.ok) {
-        alert(result.message);
-        window.location.href = '/Login/login.html';
-        document.getElementById('email').value = '';
-        document.getElementById('senha').value = '';
-    } else {
-        // Exibe o erro mais específico
-        alert(`Erro: ${result.message || 'Não foi possível cadastrar o usuário.'}`);
+        if (response.ok) {
+            alert(result.message);
+            window.location.href = '/Login/login.html';
+            document.getElementById('email').value = '';
+            document.getElementById('senha').value = '';
+        } else {
+            // Exibe o erro mais específico
+            alert(`Erro: ${result.message || 'Não foi possível cadastrar o usuário.'}`);
+        }
+    } catch (error) {
+        alert('Erro ao cadastrar usuário');
+        console.error(error);
     }
-} catch (error) {
-    alert('Erro ao cadastrar usuário');
-    console.error(error);
-}
 });
